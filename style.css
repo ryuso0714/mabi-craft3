@@ -118,11 +118,12 @@ input:focus {
 .badge.crafted { background-color: #e0e6ff; color: #4d61ff; }
 
 /* 추가 행 입력칸 */
+/* 🛠 기존 코드를 지우고 이 코드로 교체하세요 */
 .inv-input-row {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 5px; /* 📦 밑에 거슬리던 과한 여백을 줄여 균형을 맞춤 */
   padding: 10px;
   background: #fafbff;
   border-radius: 10px;
@@ -133,16 +134,38 @@ input:focus {
   font-weight: 600;
   font-size: 14px;
   flex: 1;
+  padding-left: 4px; /* 글자가 왼쪽 벽에 너무 붙지 않도록 미세 조정 */
 }
 
 #invCountInput, #targetCountInput {
-  width: 80px;
+  width: 70px;
+  height: 38px; /* 버튼과 높이를 똑같이 통일 */
+  text-align: center;
+  padding: 0;
 }
 
 #addInvBtn, #addTargetBtn {
   width: auto;
-  padding: 10px 16px;
-  font-size: 14px;
+  height: 38px; /* 입력창과 완벽하게 수평 정렬 */
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #edf0ff; /* 🔘 어색한 회색 대신 은은한 보라/블루 톤 적용 */
+  color: #4d61ff;
+  border: 1px solid #d2dcff;
+  border-radius: 8px; /* 전체적인 UI 감성에 맞춰 라운딩 처리 */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 추가 버튼에 마우스를 올렸을 때 반전 효과 */
+#addInvBtn:hover, #addTargetBtn:hover {
+  background: #4d61ff;
+  color: #fff;
+  border-color: #4d61ff;
 }
 
 /* 🔘 '통합 계산하기' 메인 버튼 크기 업그레이드 */
