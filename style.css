@@ -139,16 +139,29 @@ input:focus {
   width: 80px;
 }
 
+/* 🔘 추가(Add) 버튼 스타일 업데이트 완료 */
 #addInvBtn, #addTargetBtn {
   width: auto;
   padding: 10px 16px;
-  background: #eef2ff;
-  border-radius: 10px;
-  border: 1px solid #e0e6ff;
   font-size: 14px;
+  border-radius: 10px;        /* count 입력창과 동일한 라운드(10px) 적용 */
+  border: 1px solid #e0e6ff; /* 테두리 선 통일 */
+  background-color: #fff;    /* 깔끔한 화이트 배경 */
+  color: #4d61ff;            /* 포인트가 되는 블루/보라 컬러 텍스트 */
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* 🔘 '통합 계산하기' 메인 버튼 크기 업그레이드 */
+#addInvBtn:hover, #addTargetBtn:hover {
+  background-color: #f0f4ff; /* 마우스 오버 시 연한 블루 피드백 */
+}
+
+#addInvBtn:active, #addTargetBtn:active {
+  transform: scale(0.96);    /* 클릭 시 살짝 눌리는 애니메이션 효과 */
+}
+
+/* '통합 계산하기' 메인 버튼 크기 업그레이드 */
 #calcBtn {
   width: 100%;
   padding: 18px; /* 세로 폭 확대 */
@@ -176,7 +189,7 @@ input:focus {
   box-shadow: none;
 }
 
-/* 🔴 추가된 아이템 태그(칩) 디자인 전면 수정 */
+/* 추가된 아이템 태그(칩) 디자인 전면 수정 */
 .inv-list {
   display: flex;
   flex-wrap: wrap;
@@ -212,7 +225,7 @@ input:focus {
   color: #c53030;
 }
 
-/* 둔한 느낌을 주던 배경 제거하고 심플한 X 버튼으로 교체 */
+/* 심플한 X 버튼 */
 .inv-tag .remove-btn {
   cursor: pointer;
   color: #ff6b6b;
@@ -255,12 +268,12 @@ input:focus {
   gap: 15px;
 }
 
-/* 📦 결과 창 내부의 중첩된 점선 테두리 제거 및 패딩 최적화 */
+/* 결과 창 내부의 중첩된 점선 테두리 제거 및 패딩 최적화 */
 #craftResult, #rawResult, #detailResult {
   min-height: 60px;
-  padding: 6px 0; /* 테두리가 사라지므로 바깥 박스와 균형을 맞추기 위해 내부 패딩 조절 */
-  background: transparent; /* 답답한 배경색 제거 */
-  border: none;            /* 파란색/보라색 점선 테두리 과감히 삭제 */
+  padding: 6px 0; 
+  background: transparent; 
+  border: none;            
   border-radius: 0;
   font-size: 14px;
 }
@@ -274,22 +287,22 @@ input:focus {
   border-bottom: 1px solid #edf2f7;
 }
 
-/* 🔢 리스트 내부 텍스트 정렬 및 양끝 분산 피로도 완화 */
+/* 리스트 내부 텍스트 정렬 및 양끝 분산 피로도 완화 */
 .result-item {
-  padding: 10px 14px; /* 위아래 패딩을 살짝 주어 모바일 터치감/가독성 확보 */
+  padding: 10px 14px; 
   margin-bottom: 6px;
-  background-color: #f8fafc; /* 리스트 아이템 구분을 위한 아주 연한 회색 배경 */
+  background-color: #f8fafc; 
   border-radius: 8px;
   border-left: 3px solid #7b8cff;
   display: flex;
-  justify-content: flex-start; /* 시선 분산 방지를 위해 왼쪽 정렬 베이스로 변경 */
+  justify-content: flex-start; 
   align-items: center;
-  gap: 12px; /* 이름과 개수 사이의 적당한 공백 지정 */
+  gap: 12px; 
 }
 
-/* 수량이나 횟수 정보는 아이템 이름 우측에 자연스럽게 나란히 배치 */
+/* 수량이나 횟수 정보는 우측에 나란히 배치 */
 .result-item span {
-  margin-left: auto; /* 우측 정렬 기조는 유지하되 너무 멀리 찢어지지 않도록 조정 */
+  margin-left: auto; 
   color: #4a5568;
   font-weight: 600;
 }
