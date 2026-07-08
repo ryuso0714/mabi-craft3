@@ -251,12 +251,6 @@ input:focus {
   gap: 15px;
 }
 
-/* 요약형 상단 카드 강조 */
-.raw-total-box {
-  background: #f4f7ff !important;
-  border: 1px solid #d2dcff;
-}
-
 .raw-total-box h2 {
   color: #1e3a8a;
   font-size: 15px;
