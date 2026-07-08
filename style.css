@@ -143,6 +143,8 @@ input:focus {
   width: auto;
   padding: 10px 16px;
   background: #eef2ff;
+  border-radius: 10px;
+  border: 1px solid #e0e6ff;
   font-size: 14px;
 }
 
