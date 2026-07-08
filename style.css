@@ -142,6 +142,7 @@ input:focus {
 #addInvBtn, #addTargetBtn {
   width: auto;
   padding: 10px 16px;
+  background: #eef2ff;
   font-size: 14px;
 }
 
