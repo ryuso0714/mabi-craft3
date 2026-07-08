@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7ff, #eef3ff);
+  color: #222;
+}
+
+.header {
+  padding: 30px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #ffffff, #f0f4ff);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* 듀얼 검색 구조 Grid */
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.card {
+  padding: 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+  margin-bottom: 12px;
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.search-container {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  background: #fafbff;
+  border: 1px solid #e0e6ff;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #7b8cff;
+  box-shadow: 0 0 0 3px rgba(123, 140, 255, 0.2);
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e0e6ff;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+}
+
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.search-item:hover {
+  background: #f0f4ff;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.badge.raw { background-color: #e2e8f0; color: #4a5568; }
+.badge.crafted { background-color: #e0e6ff; color: #4d61ff; }
+
+/* 추가 행 입력칸 */
+.inv-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #fafbff;
+  border-radius: 10px;
+  border: 1px solid #e0e6ff;
+}
+
+#selectedItemName, #selectedTargetName {
+  font-weight: 600;
+  font-size: 14px;
+  flex: 1;
+}
+
+#invCountInput, #targetCountInput {
+  width: 80px;
+}
+
+#addInvBtn, #addTargetBtn {
+  width: auto;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #6c7bff, #8aa0ff);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(108, 123, 255, 0.25);
+}
+
+/* 태그 리스트 스타일 디자인 고도화 (목표와 보유의 수량 대조 직관성 부여) */
+.inv-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 40px;
+  padding: 5px 0;
+}
+
+.inv-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 목표 등록 아이템 (플러스 느낌) */
+.target-section .inv-tag {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #4338ca;
+}
+
+/* 보유 재료 아이템 (차감 마이너스 느낌) */
+.inventory-section .inv-tag {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+}
+
+.inv-tag .remove-btn {
+  cursor: pointer;
+  color: #ff6b6b;
+  font-weight: bold;
+  border: none;
+  background: none;
+  font-size: 14px;
+}
+
+.calc-action-card {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.calc-action-card:hover { transform: none; box-shadow: none; }
+
+/* 결과창 고도화 레이아웃 */
+.result-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.raw-total-box {
+  background: #f0f5ff !important;
+  border: 2px solid #bcd2ff;
+}
+
+.raw-total-box h2 {
+  color: #1e3a8a;
+  font-size: 16px;
+}
+
+.result-container-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+#craftResult, #rawResult, #detailResult {
+  min-height: 80px;
+  padding: 12px;
+  background: #fafbff;
+  border: 1px dashed #d2dcff;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.result-group-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4a5568;
+  margin: 10px 0 5px 0;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.result-item {
+  padding: 6px 10px;
+  margin-bottom: 6px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border-left: 3px solid #7b8cff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+  display: flex;
+  justify-content: space-between;
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 768px) {
+  .search-grid, .result-container-split {
+    grid-template-columns: 1fr;
+  }
+}
