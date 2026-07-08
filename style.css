@@ -1,0 +1,339 @@
+/* ==========================================================================
+   [1] 기본 리셋 및 테마 설정 (게임 인터페이스 느낌의 다크 모드 믹스)
+   ========================================================================== */
+:root {
+  --bg-color: #f7fafc;
+  --card-bg: #ffffff;
+  --text-main: #2d3748;
+  --text-muted: #718096;
+  --border-color: #e2e8f0;
+  
+  /* 포인트 컬러 */
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --accent-target: #dd6b20;   /* 제작 목표 색상 */
+  --accent-inv: #319795;      /* 보유 재료 색상 */
+  --danger: #e53e3e;
+  
+  /* 배지 컬러 */
+  --badge-crafted: #3182ce;
+  --badge-raw: #38a169;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  padding: 20px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* 타이틀 헤더 */
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  color: #1a202c;
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   [2] 공통 카드(Card) 스타일 및 레이아웃
+   ========================================================================== */
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 24px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.card h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 좌우 듀얼 검색창 그리드 */
+.search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .search-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 세션별 포인트 보더라인 */
+.target-section { border-top: 4px solid var(--accent-target); }
+.inventory-section { border-top: 4px solid var(--accent-inv); }
+
+/* ==========================================================================
+   [3] 검색창 및 자동완성 결과 (Search & Autocomplete)
+   ========================================================================== */
+.search-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+input[type="search"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="search"]:focus {
+  border-color: var(--primary);
+}
+
+/* 드롭다운 결과창 */
+.search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-item:hover {
+  background-color: #f7fafc;
+}
+
+/* 배지 (가공품 / 원재료) */
+.badge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  color: #fff;
+  font-weight: 600;
+}
+.badge.crafted { background-color: var(--badge-crafted); }
+.badge.raw { background-color: var(--badge-raw); }
+
+/* 유틸리티 클래스 (검색창 숨김용) */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   [4] 수량 입력 행 및 등록 태그 (Input Row & Tags)
+   ========================================================================== */
+.inv-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7fafc;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.inv-input-row span {
+  font-weight: bold;
+  flex-grow: 1;
+}
+
+.inv-input-row input[type="number"] {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.inv-input-row button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.inv-input-row button:hover {
+  background: var(--primary-hover);
+}
+
+/* 등록된 아이템 리스트 (태그 나열) */
+.inv-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 40px;
+}
+
+.inv-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #edf2f7;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  gap: 8px;
+}
+
+.inv-tag .remove-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.inv-tag .remove-btn:hover {
+  color: var(--danger);
+}
+
+/* ==========================================================================
+   [5] 중앙 계산하기 버튼 섹션
+   ========================================================================== */
+.calc-action-card {
+  text-align: center;
+  padding: 16px;
+}
+
+#calcBtn {
+  width: 100%;
+  max-width: 400px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 16px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(118, 75, 162, 0.25);
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+#calcBtn:hover {
+  opacity: 0.95;
+}
+
+#calcBtn:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   [6] 결과 출력 리포트 레이아웃 (Result Layout)
+   ========================================================================== */
+.result {
+  border-top: 4px solid var(--primary);
+}
+
+.result-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 결과 아이템 기본 박스 스타일링 */
+.result-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.result-container-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .result-container-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.result-section {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+}
+
+/* 결과 텍스트 타이틀 그룹 [가공시설/목표아이템] */
+.result-group-title {
+  font-weight: 700;
+  color: #4a5568;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border-color);
+  font-size: 0.95rem;
+}
+
+/* 결과 목록 한 줄 */
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.result-item strong {
+  color: #2d3748;
+}
+
+.result-item span {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* 애니메이션효과 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
