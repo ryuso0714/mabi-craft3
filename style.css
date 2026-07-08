@@ -281,7 +281,7 @@ input:focus {
   border-bottom: 1px solid #edf2f7;
 }
 
-/* 리스트 내부 텍스트 정렬 및 양끝 분산 피로도 완화 */
+/* 리스트 내부 텍스트 정렬 및 간격 좁히기 */
 .result-item {
   padding: 10px 14px; 
   margin-bottom: 6px;
@@ -289,16 +289,28 @@ input:focus {
   border-radius: 8px;
   border-left: 3px solid #7b8cff;
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start; /* 왼쪽부터 정렬 */
   align-items: center;
-  gap: 12px; 
+  gap: 8px; /* 이름과 콜론, 수량 사이의 미세한 간격 */
 }
 
-/* 수량이나 횟수 정보는 우측에 나란히 배치 */
+/* 수량이나 횟수 정보 스타일 (오른쪽 밀기 제거) */
 .result-item span {
-  margin-left: auto; 
+  /* margin-left: auto; 👈 이 줄을 지우거나 주석처리 합니다 */
   color: #4a5568;
   font-weight: 600;
+}
+
+/* 가짜 콜론(:)을 이름 뒤에 자동으로 붙여주는 마법의 코드 */
+.result-item::after {
+  content: ":";
+  order: 1; /* 이름(0순위) 바로 뒤에 배치 */
+  color: #a0aec0; /* 콜론 색상을 연한 회색으로 */
+}
+
+/* 수량이 콜론 뒤로 가도록 순서 지정 */
+.result-item span {
+  order: 2; /* 콜론보다 뒤에 배치 */
 }
 
 .hidden { display: none !important; }
