@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>마비모 가공 도우미⚒️</title>
+  <title>마비모 가공 도우미</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="header">
-    <h1>마비모 가공 도우미⚒️</h1>
+    <h1>마비모 가공 도우미</h1>
   </header>
 
   <main class="container">
@@ -16,7 +16,7 @@
     <div class="search-grid">
       <!-- 왼쪽: 제작할 아이템 (Goal) -->
       <section class="card target-section">
-        <h2>🎯 제작할 아이템 추가</h2>
+        <h2>🛠 생산할 가공품 추가</h2>
         <form class="search-container" onsubmit="event.preventDefault();">
           <input type="search" id="quickSearchInput" placeholder="제작할 목표 아이템 검색..." autocomplete="off">
           <div id="quickSearchResults" class="search-results hidden"></div>
@@ -46,7 +46,7 @@
     </div>
 
     <section class="card calc-action-card">
-      <button id="calcBtn">🧮 통합 계산하기</button>
+      <button id="calcBtn">📊 계산하기</button>
     </section>
 
     <!-- 결과 리포트 레이아웃 -->
@@ -54,20 +54,20 @@
       <div class="result-layout">
         <!-- 1. 진짜 원재료 찐 총합 -->
         <div class="result-box raw-total-box">
-          <h2>🛒 필요한 순수 원재료 찐 총합</h2>
+          <h2>💎 원재료 최종 합계</h2>
           <div id="rawResult">제작할 아이템과 수량을 입력해 주세요.</div>
         </div>
 
         <div class="result-container-split">
           <!-- 2. 가공 시설별 공정 -->
           <div class="result-section">
-            <h2>⚙️ 가공 시설별 공정 (행동 지침)</h2>
+            <h2>⚙️ 가공 횟수</h2>
             <div id="craftResult">공정이 없습니다.</div>
           </div>
           
           <!-- 3. 목표 아이템별 상세 소요량 -->
           <div class="result-section">
-            <h2>📋 목표 아이템별 상세 재료</h2>
+            <h2>📋 가공품별 상세 재료</h2>
             <div id="detailResult">상세 내역이 없습니다.</div>
           </div>
         </div>
