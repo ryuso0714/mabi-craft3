@@ -283,14 +283,25 @@ function renderFinalResult(globalProcess, globalRawTotal, detailsReport) {
   }
   DOM.rawResult.innerHTML = rawHtml || "필요한 원재료가 없습니다. (보유 재료 충분)";
 
-  // [2] 가공 시설별 그룹화 공정 출력[span_15](start_span)[span_15](end_span)
+    // [2] 가공 시설별 그룹화 공정 출력
   const facilityGroups = {};
   for (const [item, count] of Object.entries(globalProcess)) {
     if (count <= 0) continue;
     const info = master[item];
     const categoryText = info ? info.tagText : "기타 가공";
     if (!facilityGroups[categoryText]) facilityGroups[categoryText] = [];
-    facilityGroups[categoryText].push(`<div class="result-item"><strong>${item}</strong> <span>${count}회 가공</span></div>`);
+    
+    // DB에서 해당 아이템의 1회당 생산량(output)을 가져와 총 생산 아이템 수 계산
+    const dbItem = findItem(item);
+    const totalOutput = dbItem ? (dbItem.output * count) : 0;
+    
+    facilityGroups[categoryText].push(`
+      <div class="result-item">
+        <strong>${item}</strong> 
+        <span>${totalOutput}개</span>
+        <span style="color: #a0aec0; font-size: 13px; font-weight: 400; margin-left: 4px;">(${count}회 가공)</span>
+      </div>
+    `);
   }
 
   let craftHtml = "";
@@ -299,6 +310,7 @@ function renderFinalResult(globalProcess, globalRawTotal, detailsReport) {
   }
   DOM.craftResult.innerHTML = craftHtml || "진행할 공정이 없습니다.";
 
+  
   // [3] 목표 아이템별 개별 상세 정보 출력
   let detailHtml = "";
   for (const itemReport of detailsReport) {
